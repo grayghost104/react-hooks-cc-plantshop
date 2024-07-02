@@ -1,18 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 
-function PlantCard() {
+function PlantCard({plant}) {
+  const [showStock, setInStock] = useState(true)
   return (
     <li className="card" data-testid="plant-item">
-      <img src={"https://via.placeholder.com/400"} alt={"plant name"} />
-      <h4>{"plant name"}</h4>
-      <p>Price: {"plant price"}</p>
+      <img 
+      // onClick={()=>setInStock(!showStock)}
+       src={plant.image} alt={"plant name"} />
+      <h4>{plant.name}</h4>
+      <p>Price: $ {plant.price}</p>
       {true ? (
-        <button className="primary">In Stock</button>
+        <button onClick={()=>setInStock(!showStock)}
+        // {showStock ? "In Stock" : "Out of Stock"}
+         >{showStock ? "In Stock" : "Sold Out"}</button>
       ) : (
-        <button>Out of Stock</button>
+        <button>Out of Stock </button>
       )}
     </li>
   );
 }
 
 export default PlantCard;
+
+/* The logic behind the button is that when you click anyone on the image it would change the 
+In stock button to out of stock with the help of the ternary 
+*/
